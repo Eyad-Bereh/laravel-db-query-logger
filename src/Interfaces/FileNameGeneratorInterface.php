@@ -2,6 +2,7 @@
 
 namespace EyadBereh\LaravelDbQueryLogger\Interfaces;
 
-interface FileNameGeneratorInterface {
+interface FileNameGeneratorInterface
+{
     public function filename(): string;
 }

@@ -2,7 +2,6 @@
 
 namespace EyadBereh\LaravelDbQueryLogger\Facades;
 
-
 use Illuminate\Support\Facades\Facade;
 
 class LaravelDbQueryLogger extends Facade

@@ -27,6 +27,6 @@ return [
             'path' => DefaultPathGenerator::class,
             'message_formatter' => JsonMessageFormatter::class,
             'disk' => config('filesystems.default'),
-        ]
+        ],
     ],
 ];

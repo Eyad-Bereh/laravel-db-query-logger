@@ -2,6 +2,7 @@
 
 namespace EyadBereh\LaravelDbQueryLogger\Interfaces;
 
-interface PathGeneratorInterface {
+interface PathGeneratorInterface
+{
     public function path(): string;
 }

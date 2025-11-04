@@ -13,8 +13,7 @@ class JsonFileDriver extends AbstractDriver
         private readonly FileNameGeneratorInterface $fileNameGenerator,
         private readonly MessageFormatterInterface $messageFormatter,
         private readonly PathGeneratorInterface $pathGenerator
-    ) {
-    }
+    ) {}
 
     public function writeLog(): void
     {
@@ -27,7 +26,7 @@ class JsonFileDriver extends AbstractDriver
 
         $storage = Storage::disk($disk);
 
-        if (!$storage->exists($fullpath)) {
+        if (! $storage->exists($fullpath)) {
             $content_array = [$content];
             $storage->put($fullpath, json_encode($content_array, JSON_PRETTY_PRINT));
         } else {
@@ -48,7 +47,7 @@ class JsonFileDriver extends AbstractDriver
             'bindings' => $this->bindings,
             'time' => $this->time,
             'connection' => $this->connection,
-            'sql' => $this->sql
+            'sql' => $this->sql,
         ];
 
         $message_formatter = $this->messageFormatter->format();

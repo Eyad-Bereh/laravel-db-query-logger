@@ -6,7 +6,6 @@ use EyadBereh\LaravelDbQueryLogger\Interfaces\MessageFormatterInterface;
 
 class JsonMessageFormatter implements MessageFormatterInterface
 {
-
     public function format(): string|array
     {
         return [
@@ -15,7 +14,7 @@ class JsonMessageFormatter implements MessageFormatterInterface
             'bindings' => ':bindings:',
             'time' => ':time:',
             'connection' => ':connection:',
-            'sql' => ':sql:'
+            'sql' => ':sql:',
         ];
     }
 }

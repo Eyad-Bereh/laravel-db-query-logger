@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 
 class UuidFileNameGenerator implements FileNameGeneratorInterface
 {
-
     public function filename(): string
     {
         return Str::uuid();

@@ -1,6 +1,8 @@
 <?php
 
 namespace EyadBereh\LaravelDbQueryLogger\Interfaces;
-interface MessageFormatterInterface {
+
+interface MessageFormatterInterface
+{
     public function format(): string|array;
 }

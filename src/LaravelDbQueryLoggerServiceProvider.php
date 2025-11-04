@@ -52,12 +52,12 @@ class LaravelDbQueryLoggerServiceProvider extends PackageServiceProvider
             throw new \Exception("The specified logging driver [$concrete] must not be abstract");
         }
 
-        if (!$reflection_class->isInstantiable()) {
+        if (! $reflection_class->isInstantiable()) {
             throw new \Exception("The specified logging driver [$concrete] must be instantiatable");
         }
 
-        if (!$reflection_class->isSubclassOf(AbstractDriver::class)) {
-            throw new \Exception("The specified logging driver [$concrete] must extend the class [".AbstractDriver::class."]");
+        if (! $reflection_class->isSubclassOf(AbstractDriver::class)) {
+            throw new \Exception("The specified logging driver [$concrete] must extend the class [".AbstractDriver::class.']');
         }
 
         if ($reflection_class->isAnonymous()) {
@@ -81,12 +81,12 @@ class LaravelDbQueryLoggerServiceProvider extends PackageServiceProvider
                 throw new \Exception("The specified file name generator [$file_name_generator] must not be abstract");
             }
 
-            if (!$reflection_class->isInstantiable()) {
+            if (! $reflection_class->isInstantiable()) {
                 throw new \Exception("The specified file name generator [$file_name_generator] must be instantiatable");
             }
 
-            if (!$reflection_class->implementsInterface(FileNameGeneratorInterface::class)) {
-                throw new \Exception("The specified file name generator [$file_name_generator] must implement the interface [".FileNameGeneratorInterface::class."]");
+            if (! $reflection_class->implementsInterface(FileNameGeneratorInterface::class)) {
+                throw new \Exception("The specified file name generator [$file_name_generator] must implement the interface [".FileNameGeneratorInterface::class.']');
             }
 
             if ($reflection_class->isAnonymous()) {
@@ -111,12 +111,12 @@ class LaravelDbQueryLoggerServiceProvider extends PackageServiceProvider
                 throw new \Exception("The specified message formatter [$message_formatter] must not be abstract");
             }
 
-            if (!$reflection_class->isInstantiable()) {
+            if (! $reflection_class->isInstantiable()) {
                 throw new \Exception("The specified message formatter [$message_formatter] must be instantiatable");
             }
 
-            if (!$reflection_class->implementsInterface(MessageFormatterInterface::class)) {
-                throw new \Exception("The specified message formatter [$message_formatter] must implement the interface [".MessageFormatterInterface::class."]");
+            if (! $reflection_class->implementsInterface(MessageFormatterInterface::class)) {
+                throw new \Exception("The specified message formatter [$message_formatter] must implement the interface [".MessageFormatterInterface::class.']');
             }
 
             $this->app->bind(MessageFormatterInterface::class, $message_formatter);
@@ -137,12 +137,12 @@ class LaravelDbQueryLoggerServiceProvider extends PackageServiceProvider
                 throw new \Exception("The specified path generator [$path_generator] must not be abstract");
             }
 
-            if (!$reflection_class->isInstantiable()) {
+            if (! $reflection_class->isInstantiable()) {
                 throw new \Exception("The specified path generator [$path_generator] must be instantiatable");
             }
 
-            if (!$reflection_class->implementsInterface(PathGeneratorInterface::class)) {
-                throw new \Exception("The specified path generator [$path_generator] must implement the interface [".PathGeneratorInterface::class."]");
+            if (! $reflection_class->implementsInterface(PathGeneratorInterface::class)) {
+                throw new \Exception("The specified path generator [$path_generator] must implement the interface [".PathGeneratorInterface::class.']');
             }
 
             if ($reflection_class->isAnonymous()) {

@@ -20,12 +20,11 @@ class LogDatabaseQueries
      */
     public function handle(QueryExecuted $event): void
     {
-        $queue_connection = config("queue.default");
+        $queue_connection = config('queue.default');
         $driver = app(AbstractDriver::class);
         $driver->setParameters($event->sql, $event->bindings, $event->time, $event->connectionName);
-        dispatch(function() use ($driver) {
+        dispatch(function () use ($driver) {
             $driver->store();
         });
     }
-
 }
