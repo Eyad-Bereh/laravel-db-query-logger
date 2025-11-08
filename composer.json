@@ -6,6 +6,7 @@
     "laravel",
     "laravel-db-query-logger"
   ],
+  "minimum-stability": "stable",
   "homepage": "https://github.com/Eyad-Bereh/laravel-db-query-logger",
   "license": "MIT",
   "authors": [
