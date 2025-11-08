@@ -1,19 +1,17 @@
 {
   "name": "eyad-bereh/laravel-db-query-logger",
   "description": "A robust package that enhances application observability by intercepting and logging all database interactions.",
-  "keywords": [
-    "Eyad Bereh",
-    "laravel",
-    "laravel-db-query-logger"
-  ],
-  "minimum-stability": "stable",
-  "homepage": "https://github.com/Eyad-Bereh/laravel-db-query-logger",
+  "type": "library",
   "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "EyadBereh\\LaravelDbQueryLogger\\": "src/"
+    }
+  },
   "authors": [
     {
       "name": "Eyad Bereh",
-      "email": "eyadbere@gmail.com",
-      "role": "Developer"
+      "email": "eyadbere@gmail.com"
     }
   ],
   "require": {
@@ -21,46 +19,12 @@
     "illuminate/contracts": "^10.0",
     "spatie/laravel-package-tools": "^1.14.0"
   },
-  "require-dev": {
-    "laravel/pint": "^1.0",
-    "nunomaduro/collision": "^7.8",
-    "orchestra/testbench": "^8.8",
-    "pestphp/pest": "^2.20",
-    "pestphp/pest-plugin-arch": "^2.0",
-    "pestphp/pest-plugin-laravel": "^2.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "EyadBereh\\LaravelDbQueryLogger\\": "src/",
-      "EyadBereh\\LaravelDbQueryLogger\\Database\\Factories\\": "database/factories/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "EyadBereh\\LaravelDbQueryLogger\\Tests\\": "tests/"
-    }
-  },
-  "scripts": {
-    "analyse": "vendor/bin/phpstan analyse",
-    "test": "vendor/bin/pest",
-    "test-coverage": "vendor/bin/pest --coverage",
-    "format": "vendor/bin/pint"
-  },
-  "config": {
-    "sort-packages": true,
-    "allow-plugins": {
-      "pestphp/pest-plugin": true,
-      "phpstan/extension-installer": true
-    }
-  },
   "extra": {
     "laravel": {
       "providers": [
         "EyadBereh\\LaravelDbQueryLogger\\LaravelDbQueryLoggerServiceProvider"
-      ],
-      "aliases": {
-        "LaravelDbQueryLogger": "EyadBereh\\LaravelDbQueryLogger\\Facades\\LaravelDbQueryLogger"
-      }
+      ]
     }
-  }
+  },
+  "minimum-stability": "stable"
 }
