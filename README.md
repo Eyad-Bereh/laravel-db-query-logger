@@ -1,33 +1,19 @@
-# This is my package laravel-db-query-logger
+# Laravel Database Query Logger
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/eyad-mohammed-osama/laravel-db-query-logger.svg?style=flat-square)](https://packagist.org/packages/eyad-mohammed-osama/laravel-db-query-logger)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/eyad-mohammed-osama/laravel-db-query-logger/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/eyad-mohammed-osama/laravel-db-query-logger/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/eyad-mohammed-osama/laravel-db-query-logger/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/eyad-mohammed-osama/laravel-db-query-logger/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/eyad-mohammed-osama/laravel-db-query-logger.svg?style=flat-square)](https://packagist.org/packages/eyad-mohammed-osama/laravel-db-query-logger)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-db-query-logger.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-db-query-logger)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+The Laravel DB Query Logger is a robust package that enhances application observability by intercepting and logging all
+database interactions.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require eyad-mohammed-osama/laravel-db-query-logger
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-db-query-logger-migrations"
-php artisan migrate
+composer require eyad-bereh/laravel-db-query-logger
 ```
 
 You can publish the config file with:
@@ -39,27 +25,38 @@ php artisan vendor:publish --tag="laravel-db-query-logger-config"
 This is the contents of the published config file:
 
 ```php
+<?php
+
+use EyadBereh\LaravelDbQueryLogger\Drivers\JsonFileDriver;
+use EyadBereh\LaravelDbQueryLogger\Drivers\LogFileDriver;
+use EyadBereh\LaravelDbQueryLogger\FileNameGenerators\DateFileNameGenerator;
+use EyadBereh\LaravelDbQueryLogger\MessageFormatters\JsonMessageFormatter;
+use EyadBereh\LaravelDbQueryLogger\MessageFormatters\LogMessageFormatter;
+use EyadBereh\LaravelDbQueryLogger\PathGenerators\DefaultPathGenerator;
+
 return [
+    'enabled' => env('LARAVEL_DB_QUERY_LOGGER_ENABLED', true),
+
+    'driver' => env('LARAVEL_DB_QUERY_LOGGER_DRIVER', 'log_file'),
+
+    'drivers' => [
+        'log_file' => [
+            'concrete' => LogFileDriver::class,
+            'file_name' => DateFileNameGenerator::class,
+            'path' => DefaultPathGenerator::class,
+            'message_formatter' => LogMessageFormatter::class,
+            'use_laravel_logs' => false,
+            'disk' => config('filesystems.default'),
+        ],
+        'json_file' => [
+            'concrete' => JsonFileDriver::class,
+            'file_name' => DateFileNameGenerator::class,
+            'path' => DefaultPathGenerator::class,
+            'message_formatter' => JsonMessageFormatter::class,
+            'disk' => config('filesystems.default'),
+        ],
+    ],
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-db-query-logger-views"
-```
-
-## Usage
-
-```php
-$laravelDbQueryLogger = new EyadBereh\LaravelDbQueryLogger();
-echo $laravelDbQueryLogger->echoPhrase('Hello, EyadBereh!');
-```
-
-## Testing
-
-```bash
-composer test
 ```
 
 ## Changelog
@@ -69,10 +66,6 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
