@@ -3,6 +3,7 @@
   "description": "A robust package that enhances application observability by intercepting and logging all database interactions.",
   "type": "library",
   "license": "MIT",
+  "version": "0.1.0",
   "autoload": {
     "psr-4": {
       "EyadBereh\\LaravelDbQueryLogger\\": "src/"
@@ -25,6 +26,5 @@
         "EyadBereh\\LaravelDbQueryLogger\\LaravelDbQueryLoggerServiceProvider"
       ]
     }
-  },
-  "minimum-stability": "stable"
+  }
 }
